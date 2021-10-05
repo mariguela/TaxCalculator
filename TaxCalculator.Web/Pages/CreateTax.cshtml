@@ -1,0 +1,43 @@
+﻿@page
+@model TaxCalculator.Web.Pages.CreateTaxModel
+@{
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>My Site's Title</title>
+    <script src="//code.jquery.com/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('#btn-save').on('click', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://localhost:44301/Taxs',
+                    data: JSON.stringify({                    
+                        "postalCode": $('#txtPostalCode').val(),
+                        "salary": $('#txtSalary').val()
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        // Replace the div's content with the page method's return.
+                        //$("#result").text(msg.d);
+                        $("#result").text('<br/>Sucess!');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="col-md-10 row">
+        <input type="text" class="form-control" id="txtPostalCode" placeholder="Postal Code" />
+        <input type="number" class="form-control" id="txtSalary" placeholder="Salary" />
+        <button id="btn-save" class="col-2 form-control btn-primary">Save</button>
+        <div id="result"></div>
+    </div>
+</body>
+</html>

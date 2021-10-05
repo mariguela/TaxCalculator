@@ -1,0 +1,55 @@
+﻿@page
+@model TaxCalculator.Web.Pages.TaxModel
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>My Site's Title</title>
+    <script src="//code.jquery.com/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('#btn-all').on('click', function () {
+                $.get('https://localhost:44301/Taxs', function (data) {
+                    $('#result').empty();
+                    $("#Id").empty();
+                    $.each(data, function (i, v) {
+                        $('#result').html($('#result').html() + 'Id:' + v.taxId + ' - postal code: ' + v.postalCode + ' - salary:' + v.salary + ' - tax:' + v.taxValue + ' - type:' + v.type + ' - createAt:' + v.createAt  + '<br /><br />');
+                        $('#Id').append("<option>" + v.taxId + "</option>");
+                    });
+                }, 'json');
+            });
+            $('#btn').on('click', function () {
+                $.get('https://localhost:44301/Taxs/' + $('#Id').val(), function (data) {
+                    $('#result').empty()
+                    $('#result').html(data.taxId +
+                        '<br />' + data.postalCode +
+                        '<br />' + data.salary +
+                        '<br />' + data.taxValue +
+                        '<br />' + data.type + 
+                        '<br />' + data.createAt);
+                }, 'json');
+            });
+            $('#btn-delete').on('click', function () {
+                $.ajax({
+                    type: 'Delete',
+                    url: 'https://localhost:44301/Taxs?id=' + $('#Id').val()
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="col-md-10 row">
+        <a class="nav-link text-dark" asp-area="" asp-page="/CreateTax">Create</a>
+        <button id="btn-all" class="col-2 form-control btn-primary">Get all taxs</button>
+        <button id="btn" class="col-2 form-control btn-info">Get tax</button>
+        <button id="btn-delete" class="col-2 form-control btn-danger">Delete tax</button>
+        <select id="Id" class="form-control"></select>
+        <br />
+        @*@Html.DropDownList("Id", Enumerable.Range(1, 5).Select(i => new SelectListItem { Text = i.ToString() }))*@
+        <div id="result" class="row"></div>
+    </div>
+</body>
+</html>

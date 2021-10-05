@@ -10,3 +10,10 @@ Project in .NET 5 (.NET Core) responsible for calculate tax.
 EntityFrameworkCore
 NUnit 
 ```
+
+# Design Patterns
+
+```shell
+Repository
+UnitOfWork
+

@@ -8,6 +8,7 @@ Project in .NET 5 (.NET Core) responsible for calculate tax, back-end REST API e
 ```shell
 .Net 5
 EntityFrameworkCore
+Swagger
 NUnit 
 ```
 
@@ -20,3 +21,6 @@ Repository
 UnitOfWork
 Dependency Injection
 ```
+
+# Api
+https://localhost:44379/swagger/index.html

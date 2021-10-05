@@ -1,7 +1,7 @@
 # TaxCalculator
 
 
-Project in .NET 5 (.NET Core) responsible for calculate tax.
+Project in .NET 5 (.NET Core) responsible for calculate tax, back-end REST API e front-end Razor Pages.
 
 
 # Stack
@@ -10,6 +10,8 @@ Project in .NET 5 (.NET Core) responsible for calculate tax.
 EntityFrameworkCore
 NUnit 
 ```
+
+
 
 # Design Patterns
 
